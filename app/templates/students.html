@@ -1,0 +1,39 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-md-6">
+<h3>Add New Student</h3>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" class="btn btn-default"></input>
+</form>
+{% if error_message %}
+<p class="alert alert-danger"> {{error_message}}</p>
+{% endif %}
+<h3>My Students</h3>
+<table class="table table-striped">
+  <thead>
+
+      <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Class Room</th>
+          <th>Created</th>
+      </tr>
+  </thead>
+  <tbody>
+  {% if students %}
+    {% for student in students %}
+        <tr>
+            <td>{{ student.first_name }}</td>
+            <td>{{ student.last_name }}</td>
+            <td>{{ student.room }}</td>
+            <td>{{ student.created_date }}</td>
+        </tr>
+      {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

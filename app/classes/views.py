@@ -1,10 +1,7 @@
 from django.shortcuts import render
 from django.contrib import messages
-from django.http import HttpResponse
 from django.views.generic import View
-from django.contrib.auth import authenticate
-from django.shortcuts import redirect
-from django.http import HttpResponse, HttpResponseRedirect, Http404
+from django.http import HttpResponseRedirect, Http404
 from classes.forms import ClassesForm
 from classes.models import Classes
 
