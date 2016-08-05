@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Heroku Quick Starter</title>
+        <title>Class Teacher Application</title>
         {% load staticfiles %}
         <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -15,6 +15,8 @@
         <link href="{% static 'css/main.css' %}" type="text/css" rel="stylesheet"/>
     </head>
     <body>
-    <h1>Sample Heroku ready application</h1>
+    {% block content %}
+
+    {% endblock content %}
     </body>
 </html>
