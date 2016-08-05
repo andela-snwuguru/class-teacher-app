@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import View
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 from django.shortcuts import redirect
 
 class Login(View):
@@ -14,7 +14,7 @@ class Login(View):
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_active:
-                print("User is valid, active and authenticated")
+                login(request, user)
                 return redirect('/classes/')
             else:
                 error_message = "The password is valid, but the account has been disabled!"

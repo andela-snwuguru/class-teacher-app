@@ -36,8 +36,17 @@
     </div>
   </div><!-- /.container-fluid -->
 </nav>
+<div class="container">
+
+{% if messages %}
+{% for message in messages %}
+<p class="alert alert-info">{{message}}</p>
+{% endfor %}
+{% endif %}
+
     {% block content %}
 
     {% endblock content %}
+    </div>
     </body>
 </html>
