@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+<div class="card" style="padding:10px">
+  <form method="POST" >
+  {% csrf_token %}
+  <p>Are you sure you want to delete this item?</p>
+  <input type="submit" value="Yes" class="btn red"></input>
+  <a href="/classes/" class="btn">Cancel</a>
+  </form>
+</div>
+
+</div>
+{% endblock %}

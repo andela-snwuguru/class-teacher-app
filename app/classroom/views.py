@@ -1,23 +1,41 @@
 from django.shortcuts import render
 from django.contrib import messages
-from django.views.generic import View, ListView
+from django.views.generic import (
+        ListView,
+        CreateView,
+        DetailView,
+        UpdateView,
+        DeleteView,
+    )
 from django.http import HttpResponseRedirect, Http404
 from classroom.forms import ClassesForm
 from classroom.models import ClassRoom
 
-class ClassesView(View):
-    def get(self, request, *args, **kwargs):
-        classes = ClassRoom.objects.all()
-        form = ClassesForm(request.POST or None)
-        return render(request, 'classes.html', {'form': form, 'classes': classes})
+class ClassRoomList(ListView):
+    template_name = 'classroom/list.html'
+    model = ClassRoom
 
-    def post(self, request, *args, **kwargs):
-        form = ClassesForm(request.POST or None)
-        if form.is_valid():
-            class_data = form.save(commit=False)
-            class_data.user = request.user
-            class_data.save()
-            messages.success(request, 'New class successfully added')
-        else:
-            messages.success(request, 'Invalid data entry')
-        return HttpResponseRedirect('/classes/')
+class ClassRoomDetail(DetailView):
+    template_name = 'classroom/detail.html'
+    model = ClassRoom
+
+class ClassRoomCreate(CreateView):
+    template_name = 'classroom/form.html'
+    model = ClassRoom
+    fields = [
+            'name',
+            'capacity',
+        ]
+
+class ClassRoomUpdate(UpdateView):
+    template_name = 'classroom/form.html'
+    model = ClassRoom
+    fields = [
+            'name',
+            'capacity',
+        ]
+
+class ClassRoomDelete(DeleteView):
+    template_name = 'classroom/delete.html'
+    model = ClassRoom
+    success_url = '/classes/'

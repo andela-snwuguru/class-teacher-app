@@ -16,12 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from account.views import Login
-from classroom.views import ClassesView
 from students.views import StudentView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^classes/$', ClassesView.as_view()),
+    url(r'^classes/', include('classroom.urls')),
     url(r'^students/$', StudentView.as_view()),
     url(r'^$', Login.as_view()),
 ]
