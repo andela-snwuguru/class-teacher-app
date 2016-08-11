@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>Title</th>
+          <th>Created</th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+  {% if object_list %}
+  {% for item in object_list %}
+      <tr>
+          <td>{{ item.title }}</td>
+          <td>{{ item.created_date }}</td>
+          <td>
+          <a href="/subjects/{{item.id}}/delete/" class="btn red">Delete</a>
+          </td>
+      </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>

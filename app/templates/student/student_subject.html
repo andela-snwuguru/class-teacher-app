@@ -1,0 +1,38 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+<h3>Assign new Subject - <small>{{student.first_name}} {{student.last_name}}</small></h3>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" class="btn btn-default"></input>
+</form>
+</div>
+
+<div class="col-md-6">
+<h3>Student Subjects</h3>
+<table class="table table-striped">
+  <thead>
+      <tr>
+          <th>Title</th>
+          <th>Created</th>
+          <th></th>
+      </tr>
+  </thead>
+  <tbody>
+  {% if subject_list %}
+  {% for item in subject_list %}
+      <tr>
+          <td>{{ item.subject.title }}</td>
+          <td>{{ item.created_date }}</td>
+          <td>
+          <a href="/students/{{student.id}}/subject/{{item.id}}/" class="btn red">Delete</a>
+          </td>
+      </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+</div>
+{% endblock %}

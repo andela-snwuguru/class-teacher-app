@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="col-md-6">
+{% include "subject/includes/form.html" %}
+
+<h3>Subjects</h3>
+
+{% include "subject/includes/list_data.html" %}
+</div>
+{% endblock %}

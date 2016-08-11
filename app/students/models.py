@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 from django.core.urlresolvers import reverse
 from classroom.models import ClassRoom
+from subject.models import Subject
 
 class Student(models.Model):
     room = models.ForeignKey(ClassRoom, default=0)
@@ -21,3 +22,15 @@ class Student(models.Model):
     class Meta:
         ordering = ['-created_date']
 
+
+
+class StudentSubject(models.Model):
+  student = models.ForeignKey(Student)
+  subject = models.ForeignKey(Subject)
+  created_date = models.DateTimeField(auto_now_add=True)
+
+  def __str__(self):
+    return self.student.first_name
+
+  class Meta:
+    ordering = ['-created_date']

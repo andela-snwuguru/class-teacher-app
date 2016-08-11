@@ -1,0 +1,9 @@
+{% load staticfiles %}
+<div class="row">
+<h3>Add New Subject</h3>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" class="btn btn-default"></input>
+</form>
+</div>
