@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 from django.db import models
-from classes.models import Classes
+from classroom.models import ClassRoom
 
 class Student(models.Model):
-    room = models.ForeignKey(Classes, default=0)
+    room = models.ForeignKey(ClassRoom, default=0)
     first_name = models.CharField(max_length=140)
     last_name = models.CharField(max_length=140)
     created_date = models.DateTimeField(auto_now=False, auto_now_add=True)

@@ -16,7 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from account.views import Login
-from classes.views import ClassesView
+from classroom.views import ClassesView
 from students.views import StudentView
 
 urlpatterns = [

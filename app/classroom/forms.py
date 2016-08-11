@@ -1,9 +1,9 @@
-from .models import Classes
+from .models import ClassRoom
 from django import forms
 
 class ClassesForm(forms.ModelForm):
 	class Meta:
-		model = Classes
+		model = ClassRoom
 		fields = [
 			'name',
 			'capacity',

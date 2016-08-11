@@ -1,13 +1,13 @@
 from django.shortcuts import render
 from django.contrib import messages
-from django.views.generic import View
+from django.views.generic import View, ListView
 from django.http import HttpResponseRedirect, Http404
-from classes.forms import ClassesForm
-from classes.models import Classes
+from classroom.forms import ClassesForm
+from classroom.models import ClassRoom
 
 class ClassesView(View):
     def get(self, request, *args, **kwargs):
-        classes = Classes.objects.all()
+        classes = ClassRoom.objects.all()
         form = ClassesForm(request.POST or None)
         return render(request, 'classes.html', {'form': form, 'classes': classes})
 

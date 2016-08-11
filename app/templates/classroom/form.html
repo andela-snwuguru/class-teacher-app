@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block content %}
+<div class="row">
+<h3>Add New Class</h3>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" class="btn btn-default"></input>
+</form>
+{% if error_message %}
+<p class="alert alert-danger"> {{error_message}}</p>
+{% endif %}
+</div>
+{% endblock %}
