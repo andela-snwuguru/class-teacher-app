@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'account',
     'classroom',
     'students',
+    'subject',
 ]
 
 MIDDLEWARE_CLASSES = [

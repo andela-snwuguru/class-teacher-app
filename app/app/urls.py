@@ -21,5 +21,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^classes/', include('classroom.urls')),
     url(r'^students/', include('students.urls')),
+    url(r'^subjects/', include('subject.urls')),
     url(r'^$', Login.as_view()),
 ]
