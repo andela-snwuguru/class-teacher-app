@@ -8,8 +8,8 @@ from django.views.generic import (
         DeleteView,
     )
 from django.http import HttpResponseRedirect, Http404
-from classroom.forms import ClassesForm
-from classroom.models import ClassRoom
+from .models import ClassRoom
+from students.models import Student
 
 class ClassRoomList(ListView):
     template_name = 'classroom/list.html'
@@ -18,6 +18,11 @@ class ClassRoomList(ListView):
 class ClassRoomDetail(DetailView):
     template_name = 'classroom/detail.html'
     model = ClassRoom
+
+    def get_context_data(self, **kwargs):
+        context = super(ClassRoomDetail, self).get_context_data(**kwargs)
+        context['object_list'] = Student.objects.filter(room=context['object'])
+        return context
 
 class ClassRoomCreate(CreateView):
     template_name = 'classroom/form.html'
