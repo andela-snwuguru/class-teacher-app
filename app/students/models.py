@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.core.urlresolvers import reverse
 from classroom.models import ClassRoom
 
 class Student(models.Model):
@@ -13,6 +14,9 @@ class Student(models.Model):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
+    def get_absolute_url(self):
+        return reverse('student-detail', kwargs={'pk':self.id})
 
     class Meta:
         ordering = ['-created_date']

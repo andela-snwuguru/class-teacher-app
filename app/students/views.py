@@ -1,21 +1,44 @@
 from django.shortcuts import render
 from django.contrib import messages
 from django.views.generic import View
+from django.views.generic import (
+        ListView,
+        CreateView,
+        DetailView,
+        UpdateView,
+        DeleteView,
+    )
 from django.http import HttpResponseRedirect, Http404
 from students.forms import StudentForm
 from students.models import Student
 
-class StudentView(View):
-    def get(self, request, *args, **kwargs):
-        students = Student.objects.all()
-        form = StudentForm(request.POST or None)
-        return render(request, 'students.html', {'form': form, 'students': students})
+class StudentList(ListView):
+    template_name = 'student/list.html'
+    model = Student
 
-    def post(self, request, *args, **kwargs):
-        form = StudentForm(request.POST or None)
-        if form.is_valid():
-            student = form.save()
-            messages.success(request, 'New Student details successfully added')
-        else:
-            messages.success(request, 'Invalid data entry')
-        return HttpResponseRedirect('/students/')
+class StudentDetail(DetailView):
+    template_name = 'student/detail.html'
+    model = Student
+
+class StudentCreate(CreateView):
+    template_name = 'student/form.html'
+    model = Student
+    fields = [
+            'first_name',
+            'last_name',
+            'room',
+        ]
+
+class StudentUpdate(UpdateView):
+    template_name = 'student/form.html'
+    model = Student
+    fields = [
+            'first_name',
+            'last_name',
+            'room',
+        ]
+
+class StudentDelete(DeleteView):
+    template_name = 'student/delete.html'
+    model = Student
+    success_url = '/students/'
